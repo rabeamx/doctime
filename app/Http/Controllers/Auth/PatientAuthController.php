@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 use function GuzzleHttp\Promise\all;
+use Illuminate\Support\Facades\Auth;
 
 class PatientAuthController extends Controller
 {
@@ -44,7 +45,11 @@ class PatientAuthController extends Controller
             'password'  => 'required',
         ]);
 
-        // return back
-        return $request -> all();
+        // Auth Process
+        if( Auth::guard('patient') -> attempt(['email' => $request -> email, 'password' => $request -> password]) || Auth::guard('patient') -> attempt(['mobile' => $request -> mobile, 'password' => $request -> password]) ){
+            return redirect() -> route('patient.dash.page');
+        }else {
+            return redirect() -> route('login.page') -> with('danger', 'WRONG EMAIL OR PASS');
+        }
     }
 }
