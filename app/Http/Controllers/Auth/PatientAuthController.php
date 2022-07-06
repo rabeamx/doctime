@@ -34,7 +34,7 @@ class PatientAuthController extends Controller
         ]);
 
         // return back
-        return redirect() -> route('patient.reg.page') -> with('success', " Hi ". $request -> name .", Your account is ready. Now, login");
+        return redirect() -> route('patient.reg.page') -> with('success', " Hi ". $patient -> name .", Your account is ready. Now, login");
     }
 
     public function login(Request $request)
@@ -47,7 +47,7 @@ class PatientAuthController extends Controller
 
         // Auth Process
         if( Auth::guard('patient') -> attempt(['email' => $request -> email, 'password' => $request -> password]) || Auth::guard('patient') -> attempt(['mobile' => $request -> mobile, 'password' => $request -> password]) ){
-            return redirect() -> route('patient.dash.page');
+            return redirect() -> route('patient.dash.page'); 
         }else {
             return redirect() -> route('login.page') -> with('danger', 'WRONG EMAIL OR PASS');
         }
