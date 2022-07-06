@@ -35,4 +35,16 @@ class PatientAuthController extends Controller
         // return back
         return redirect() -> route('patient.reg.page') -> with('success', " Hi ". $request -> name .", Your account is ready. Now, login");
     }
+
+    public function login(Request $request)
+    {
+        // data validate
+        $this -> validate($request, [
+            'email'     => 'required',
+            'password'  => 'required',
+        ]);
+
+        // return back
+        return $request -> all();
+    }
 }
