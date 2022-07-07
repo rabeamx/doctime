@@ -52,4 +52,17 @@ class PatientAuthController extends Controller
             return redirect() -> route('login.page') -> with('danger', 'WRONG EMAIL OR PASS');
         }
     }
+
+    // Patient Logout 
+    public function logout()
+    {
+        Auth::guard('patient') -> logout();
+        return redirect() -> route('login.page');
+    }
+
+    // Patient Settings
+    public function showPatientSettingsPage()
+    {
+        
+    }
 }

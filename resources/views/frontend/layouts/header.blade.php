@@ -10,13 +10,13 @@
                 </span>
             </a>
             <a href="{{ route('home.page') }}" class="navbar-brand logo">
-                <img src="frontend/assets/img/logo.png" class="img-fluid" alt="Logo">
+                <img src="{{ url('frontend/assets/img/logo.png') }}" class="img-fluid" alt="Logo">
             </a>
         </div>
         <div class="main-menu-wrapper">
             <div class="menu-header">
                 <a href="{{ route('home.page') }}" class="menu-logo">
-                    <img src="frontend/assets/img/logo.png" class="img-fluid" alt="Logo">
+                    <img src="{{ url('frontend/assets/img/logo.png') }}" class="img-fluid" alt="Logo">
                 </a>
                 <a id="menu_close" class="menu-close" href="javascript:void(0);">
                     <i class="fas fa-times"></i>
@@ -72,8 +72,8 @@
                             </ul>
                         </li>
                         <li><a href="blank-page.html">Starter Page</a></li>
-                        <li><a href="login.html">Login</a></li>
-                        <li><a href="register.html">Register</a></li>
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Register</a></li>
                         <li><a href="forgot-password.html">Forgot Password</a></li>
                     </ul>
                 </li>
@@ -81,7 +81,7 @@
                     <a href="admin/index.html" target="_blank">Admin</a>
                 </li>
                 <li class="login-link">
-                    <a href="login.html">Login / Signup</a>
+                    <a href="login.html">login / Signup </a>
                 </li>
             </ul>		 
         </div>		 
@@ -95,24 +95,22 @@
                     <p class="contact-info-header"> +1 315 369 5943</p>
                 </div>
             </li>
-
             @if( !Auth::guard('patient') -> check() )
             <li class="nav-item">
                 <a class="nav-link header-login" href="{{ route('login.page') }}">login / Signup </a>
             </li>
             @endif
-
             @if( Auth::guard('patient') -> check() )
             <li class="nav-item dropdown has-arrow logged-item">
-                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                     <span class="user-img">
-                        <img class="rounded-circle" src="https://static.toiimg.com/thumb/resizemode-4,msid-76729750,imgsize-249247,width-720/76729750.jpg" width="31" alt="Darren Elder">
+                        <img class="rounded-circle" src="https://banner2.cleanpng.com/20180904/vji/kisspng-avatar-image-computer-icons-likengo-usertesting-index-5b8ec1242fdcf5.6000571015360822121961.jpg" width="31" alt="Darren Elder">
                     </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <div class="user-header">
                         <div class="avatar avatar-sm">
-                            <img src="https://static.toiimg.com/thumb/resizemode-4,msid-76729750,imgsize-249247,width-720/76729750.jpg" class="avatar-img rounded-circle">
+                            <img src="https://banner2.cleanpng.com/20180904/vji/kisspng-avatar-image-computer-icons-likengo-usertesting-index-5b8ec1242fdcf5.6000571015360822121961.jpg" class="avatar-img rounded-circle">
                         </div>
                         <div class="user-text">
                             <h6>{{ Auth::guard('patient') -> user() -> name }}</h6>
