@@ -20,7 +20,7 @@
                                 <h3>Login <span>Doccure</span></h3>
                             </div>
                             @include('validate')
-                            <form action="{{ route('patient.login') }}" method="POST">
+                            <form action="{{ route('login.page') }}" method="POST">
                                 @csrf
                                 <div class="form-group form-focus">
                                     <input name="email" type="text" class="form-control floating">

@@ -67,5 +67,7 @@ class Kernel extends HttpKernel
         'apple' => \App\Http\Middleware\FoodMiddleware::class,
         'admin' => \App\Http\Middleware\Admin\AdminAuthMiddleware::class,
         'admin.redirect' => \App\Http\Middleware\Admin\AdminAuthRedirectMiddleware::class,
+        'doctor' => \App\Http\Middleware\Doctor\DoctorAuthMiddleware::class,
+        'doctor.redirect' => \App\Http\Middleware\Doctor\DoctorAuthRedirectMiddleware::class,
     ];
 }

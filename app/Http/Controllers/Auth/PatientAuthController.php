@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class PatientAuthController extends Controller
 {
-    /**
+    /** 
      *  Patient Register
      */
     public function register(Request $request)
@@ -36,22 +36,23 @@ class PatientAuthController extends Controller
         // return back
         return redirect() -> route('patient.reg.page') -> with('success', " Hi ". $patient -> name .", Your account is ready. Now, login");
     }
+    
+    // // Patient login 
+    // public function login(Request $request)
+    // {
+    //     // data validate
+    //     $this -> validate($request, [
+    //         'email'     => 'required',
+    //         'password'  => 'required',
+    //     ]);
 
-    public function login(Request $request)
-    {
-        // data validate
-        $this -> validate($request, [
-            'email'     => 'required',
-            'password'  => 'required',
-        ]);
-
-        // Auth Process
-        if( Auth::guard('patient') -> attempt(['email' => $request -> email, 'password' => $request -> password]) || Auth::guard('patient') -> attempt(['mobile' => $request -> mobile, 'password' => $request -> password]) ){
-            return redirect() -> route('patient.dash.page'); 
-        }else {
-            return redirect() -> route('login.page') -> with('danger', 'WRONG EMAIL OR PASS');
-        }
-    }
+    //     // Auth Process
+    //     if( Auth::guard('patient') -> attempt(['email' => $request -> email, 'password' => $request -> password]) || Auth::guard('patient') -> attempt(['mobile' => $request -> email, 'password' => $request -> password]) ){
+    //         return redirect() -> route('patient.dash.page'); 
+    //     }else {
+    //         return redirect() -> route('login.page') -> with('danger', 'WRONG EMAIL OR PASS');
+    //     }
+    // }
 
     // Patient Logout 
     public function logout()

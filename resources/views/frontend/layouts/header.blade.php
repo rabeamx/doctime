@@ -81,7 +81,7 @@
                     <a href="admin/index.html" target="_blank">Admin</a>
                 </li>
                 <li class="login-link">
-                    <a href="login.html">login / Signup </a>
+                    <a href="{{ route('login.page') }}">login / Signup </a>
                 </li>
             </ul>		 
         </div>		 
@@ -95,11 +95,13 @@
                     <p class="contact-info-header"> +1 315 369 5943</p>
                 </div>
             </li>
-            @if( !Auth::guard('patient') -> check() )
+           
+            @if( !Auth::guard('patient') -> check() && !Auth::guard('doctor') -> check())
             <li class="nav-item">
                 <a class="nav-link header-login" href="{{ route('login.page') }}">login / Signup </a>
             </li>
             @endif
+
             @if( Auth::guard('patient') -> check() )
             <li class="nav-item dropdown has-arrow logged-item">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -123,6 +125,31 @@
                 </div>
             </li>
             @endif
+            
+            @if( Auth::guard('doctor') -> check() )
+            <li class="nav-item dropdown has-arrow logged-item">
+                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                    <span class="user-img">
+                        <img class="rounded-circle" src="https://www.pngitem.com/pimgs/m/198-1985222_avatar-doctor-png-transparent-png.png" width="31" alt="Darren Elder">
+                    </span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <div class="user-header">
+                        <div class="avatar avatar-sm">
+                            <img src="https://www.pngitem.com/pimgs/m/198-1985222_avatar-doctor-png-transparent-png.png">
+                        </div>
+                        <div class="user-text">
+                            <h6>{{ Auth::guard('doctor') -> user() -> name }}</h6>
+                            <p class="text-muted mb-0">{{ Auth::guard('doctor') -> user() -> mobile }}</p>
+                        </div>
+                    </div>
+                    <a class="dropdown-item" href="{{ route('doctor.dash.page') }}">Dashboard</a>
+                    <a class="dropdown-item" href="{{ route('doctor.settings.page') }}">Profile Settings</a>
+                    <a class="dropdown-item" href="{{ route('doctor.logout') }}">Logout</a>
+                </div>
+            </li>
+            @endif
+
         </ul>
     </nav>
 </header>

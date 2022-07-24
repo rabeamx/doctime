@@ -9,7 +9,7 @@
                 <div class="col-md-12 col-12">
                     <nav aria-label="breadcrumb" class="page-breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('home.page') }}">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Profile Settings</li>
                         </ol>
                     </nav>
@@ -25,7 +25,7 @@
         <div class="container-fluid">
             <div class="row">
             
-                @include('frontend.patient.sidebar')
+                @include('frontend.doctor.sidebar')
                 
                 <div class="col-md-7 col-lg-8 col-xl-9">
                     <div class="card">
@@ -35,7 +35,7 @@
                                     @include('validate')
 
                                     <!-- Change Password Form -->
-                                    <form action="{{ route('patient.password.change') }}" method="POST">
+                                    <form action="{{ route('doctor.password.change') }}" method="POST">
                                         @csrf
                                         <div class="form-group">
                                             <label>Old Password</label>
@@ -71,4 +71,3 @@
     <!-- /Page Content -->
 
 @endsection
-   
