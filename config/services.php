@@ -30,10 +30,15 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
-    'github' => [
-        'client_id' => env('GITHUB_CLIENT_ID'),
-        'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect' => 'http://example.com/callback-url',
+    'facebook' => [ 
+        'client_id' => '747109196706376',
+        'client_secret' => '801a289b2e9bfb077b86cbbd97852c62',
+        'redirect' => 'http://localhost:8000/facebook-login-system',
+     ],
+    'github' => [ 
+        'client_id' => 'ccc527fc8249275e16e1',
+        'client_secret' => '1f85a40824238ba10729092eb4f9acc77add0ae6',
+        'redirect' => 'http://localhost:8000/github-login-system',
      ],
      
 

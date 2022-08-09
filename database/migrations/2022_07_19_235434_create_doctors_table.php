@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email') -> unique();
-            $table->string('mobile') -> unique();
-            $table->string('password');
+            $table->string('name') -> nullable();
+            $table->string('email') -> unique() -> nullable();
+            $table->string('mobile') -> unique() -> nullable();
+            $table->string('password') -> nullable();
             $table->string('photo') -> nullable();
             $table->string('blood_group') -> nullable();
             $table->integer('age') -> nullable();
@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('country') -> nullable();
             $table->string('city') -> nullable();
             $table->string('access_token') -> nullable();
+            $table->string('oauth_id') -> nullable();
             $table->boolean('status') -> default(false);
             $table->boolean('trash') -> default(false);
             $table->timestamps();

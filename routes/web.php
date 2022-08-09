@@ -43,9 +43,16 @@ Route::get('/doctor-settings', [DoctorProfileController::class, 'showDoctorSetti
 Route::get('/doctor-password', [DoctorProfileController::class, 'showDoctorPasswordPage']) -> name('doctor.password.page') -> middleware('doctor');
 Route::post('/doctor-password', [DoctorProfileController::class, 'showDoctorPasswordChange']) -> name('doctor.password.change') -> middleware('doctor');
 
-Route::post('/doctor-register', [DoctorAuthController::class, 'register']) -> name('doctor.register');
-Route::get('/doctor-logout', [DoctorAuthController::class, 'logout']) -> name('doctor.logout');
-Route::get('/doctor_account_activation/{token?}', [DoctorAuthController::class, 'DoctorAccountActivation']) -> name('doctor.account.activation');
+Route::post('/doctor-register', [DoctorAuthController::class, 'register']) -> name('doctor.register') -> middleware('doctor');
+Route::get('/doctor-logout', [DoctorAuthController::class, 'logout']) -> name('doctor.logout') -> middleware('doctor');
+Route::get('/doctor_account_activation/{token?}', [DoctorAuthController::class, 'DoctorAccountActivation']) -> name('doctor.account.activation') -> middleware('doctor');
+Route::get('/doctor-forgot-password', [DoctorAuthController::class, 'showDoctorForgotPassword']) -> name('doctor.forgot.pass') -> middleware('doctor');
+Route::post('/doctor-forgot-password', [DoctorAuthController::class, 'doctorForgotPassword']) -> name('doctor.forgot.password') -> middleware('doctor');
+Route::get('/doctor_email_confirmation', [DoctorAuthController::class, 'doctorEmailConfirmation']) -> name('doctor.email.confirmation') -> middleware('doctor');
 
 // Social Login Routes
-Route::get('/facebook-login-req', [SocialLoginController::class, 'sendFacebookLoginController']);
+Route::get('facebook-login-req', [SocialLoginController::class, 'sendFacebookLoginReq']) -> name('fb.req');
+Route::get('facebook-login-system', [SocialLoginController::class, 'loginWithFacebook']);
+
+Route::get('github-login-req', [SocialLoginController::class, 'sendGithubLoginReq']) -> name('gh.req');
+Route::get('github-login-system', [SocialLoginController::class, 'loginWithGithub']);

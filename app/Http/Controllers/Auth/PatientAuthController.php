@@ -19,7 +19,7 @@ class PatientAuthController extends Controller
         // data validate
         $this -> validate($request, [
             'name'     => 'required',
-            'email'   => 'required',
+            'email'   => 'required|email|unique:patients',
             'mobile'    => 'required',
             'pass'=> 'required|confirmed',
         ]);

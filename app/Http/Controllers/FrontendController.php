@@ -53,7 +53,7 @@ class FrontendController extends Controller
             'password'  => 'required',
         ]);
 
-        // auth process
+        // auth process 
         if ( Auth::guard('doctor') -> attempt(['email' => $request -> email, 'password' => $request -> password]) ){
 
             if( Auth::guard('doctor') -> user() -> access_token == null && Auth::guard('doctor') -> user() -> status == true ){
@@ -65,12 +65,13 @@ class FrontendController extends Controller
 
         }else if ( Auth::guard('patient') -> attempt(['email' => $request -> email, 'password' => $request -> password]) || Auth::guard('patient') -> attempt(['mobile' => $request -> email, 'password' => $request -> password]) ){
                 
-            if( Auth::guard('patient') -> user() -> access_token == null && Auth::guard('doctor') -> user() -> status == true ){
-                return redirect() -> route('patient.dash.page');
-            }else {
-                Auth::guard('doctor') -> logout();
-                return redirect() -> route('login.page') -> with('danger', 'active your account please!');
-            }
+            // if( Auth::guard('patient') -> user() -> access_token == null && Auth::guard('doctor') -> user() -> status == true ){
+            //     return redirect() -> route('patient.dash.page');
+            // }else {
+            //     Auth::guard('doctor') -> logout();
+            //     return redirect() -> route('login.page') -> with('danger', 'active your account please!');
+            // }
+            return redirect() -> route('patient.dash.page');
             
         }else {
             return redirect() -> route('login.page') -> with('danger', 'wrong email or pass');
